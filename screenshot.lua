@@ -1,3 +1,10 @@
+-- not yet used
+
+-- pending implementation of approach:
+-- * use clipboard by default (both ^+Esc and Cmd+Shift+5)
+-- * use the Spoon to save clip to file & open editor
+
+
 function getLatestScreenshot()
 	local latestScreenshot = ""
 	local earliestTimestamp = 0
@@ -33,14 +40,14 @@ end
 
 
 
-hs.hotkey.bind(hyper, "4", function()
-  local fileName = os.getenv("HOME") .. "/Desktop/ss-" .. getTimeStamp() .. ".png"
-  hs.task.new("/usr/sbin/screencapture", nil, {"-i", fileName }):start()
-  hs.pasteboard.setContents(fileName)
+-- hs.hotkey.bind(hyper, "4", function()
+--   local fileName = os.getenv("HOME") .. "/Desktop/ss-" .. getTimeStamp() .. ".png"
+--   hs.task.new("/usr/sbin/screencapture", nil, {"-i", fileName }):start()
+--   hs.pasteboard.setContents(fileName)
   
-  image = hs.image.imageFromPath(fileName)
-  hs.pasteboard.writeObjects(image)
-end)
+--   image = hs.image.imageFromPath(fileName)
+--   hs.pasteboard.writeObjects(image)
+-- end)
 
-hs.window.focusedWindow():snapshot()
+-- hs.window.focusedWindow():snapshot()
 

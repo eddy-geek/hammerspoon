@@ -78,6 +78,8 @@ This configuration also includes the following key remappings to provide a more 
 
 ## Annex - Complete macOS Keyboard Event Flow
 
+*Warning: AI-generated*
+
 Here's the updated and complete description of the keyboard event flow on macOS:
 
 ![macOS Keyboard Event Flow](docs/macos_keyboard_flow.svg)
