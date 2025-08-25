@@ -111,6 +111,12 @@ From [init.lua](https://github.com/dguo/dotfiles/blob/main/programs/hammerspoon/
     * ErrorCatcher 
     * **BindHotkey only to some apps** - If you like to have hotkeys only in some apps or exclude some apps from your global hotkeys, then the helper bindHotkey help you.
 
+* [zzamboni.org | My Hammerspoon Configuration, With Commentary](https://zzamboni.org/post/my-hammerspoon-configuration-with-commentary/)
+  * URL dispatching to site-specific browsers
+  * various Window placement
+  * ToggleScreenRotation 
+  * many more...
+
 
  
 ## Related

@@ -1,3 +1,61 @@
+---------------------
+--    PREAMBLE     --
+---------------------
+
+require("Helpers.Base")
+require("Functions.ConfigConsole")
+require("Helpers.ErrorCatcher")
+hs.notify.show("Hammerspoon", "Starting Hammerspoon: ", hs.screen.mainScreen():name())
+require("Helpers.Util")
+-- enable local patches
+hs.window.filter = require("Helpers.Extensions.window_filter")
+hs.alert = require("Helpers.Extensions.alert")
+hs.hotkey = require("Helpers.Extensions.hotkey")
+
+-- Note: You may setup this hyper Key with Karabiner ELements
+hyper = { "shift", "ctrl", "alt", "cmd" }
+
+require('Functions.Reload')
+require("Functions.ConfigConsole")
+require('Functions.StartDebug')
+
+require("Helpers.Extensions.String")
+require("Helpers.Extensions.Table")
+require("Helpers.Extensions.WindowFilterEvents")
+require("Helpers.Extensions.WindowAxHotfix")
+
+require("Helpers.Debug")
+require("Helpers.DebugFunction")
+
+-- require("Helpers.Enum")
+-- require("Helpers.RetryWhile")
+-- require("Helpers.RetryWhileOnComplete")
+
+require("Helpers.HotkeySilence")
+require("Helpers.SendKeysOnlyInApp")
+require("Helpers.HotkeyBindModal")
+require("Helpers.HotkeyBindSafe")
+
+helper = {
+    table = require('Helpers.Table'),
+    window = require('Helpers.Window'),
+}
+
+require('Functions.ReloadWatcher')
+
+---------------------
+--    MUESCHUA     --
+---------------------
+require('Functions.ChromeNewWindow')
+require('Functions.CheatSheet')         -- h+x, h+a
+require('Functions.FuzzyWindowSearch')  -- h+e
+require('Functions.AudioSwitcher')      -- h-6
+require('Functions.Caffeine')           -- h-c
+
+---------------------
+--    MY STUFF     --
+---------------------
+
 -- Ctrl-...
 require("focus_or_launch")
 
