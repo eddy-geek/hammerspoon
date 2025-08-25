@@ -51,7 +51,7 @@ require('Functions.CheatSheet')         -- h+x, h+a
 require('Functions.FuzzyWindowSearch')  -- h+e
 require('Functions.AudioSwitcher')      -- h-7
 require('Functions.Caffeine')           -- h-c
--- require('Functions.MemoryAppBar') -- show current used memory
+require('Functions.MemoryAppBar') -- show current used memory
 
 ---------------------
 --    MY STUFF     --
