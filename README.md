@@ -14,7 +14,7 @@ I am trying to stick
  * custom keyboard layout (for accents, compose key)
  * Hammerspoon (for most shortcuts and automation)
  
- Notably I am skipping Karabiner as it is heavy and can have compatibility issues ([Karabiner-Elements#3708](https://github.com/pqrs-org/Karabiner-Elements/issues/3708)).
+ Notably I am skipping Karabiner as it is heavy and can have compatibility issues ([Karabiner-Elements#3708](https://github.com/pqrs-org/Karabiner-Elements/issues/3708)) (although light modifications like [hyper key](https://dev.to/ccedacero/better-shortcuts-with-karabiner-elements-and-hammerspoon-1plf) seem to not cause issues).
 
 ## Dependencies
 
@@ -27,7 +27,7 @@ After :   ⌘  🌐  ^  ⌥   (Command   Fn   Control  Option)
 
 ![Macbook Keyboard Modifiers](docs/keyboard-modifiers-macbook.png)
 
-On typical external Windows keyboards, it issimpler as only Command (Windows logo) and Control need to be swapped. When using Keychron keyboard which have a MacOS mode, I leave them in Windows mode.
+On typical external Windows keyboards, it is simpler as only Command (Windows logo) and Control need to be swapped. When using Keychron keyboard which have a MacOS mode, I leave them in Windows mode.
 
 ```
 Before:   ^   ⊞ = ⌘   ⌥    (Control ; Windows == Command ; Alt == Option)
@@ -37,7 +37,6 @@ After :   ⌘     ^     ⌥    (Command      Control  Option)
 ![External Keyboard Modifiers](docs/keyboard-modifiers-external.png)
 
 (Note that this remapping has to be done for each external keyboard you connect, unless you use a separate tool like Karabiner-Elements)
-
 
 
 ## Hotkeys
@@ -81,6 +80,21 @@ This configuration also includes the following key remappings to provide a more 
 
 ## Future Improvements
 
+> Hammerspoon can use hs.eventtap to swap only when frontmost app is not in an exclusion list. This is less robust than Karabiner for low-level modifier timing: there are edge cases with chord timing and held modifiers while Karabiner handles this more reliably.
+
 * Fix terminal as it is using Ctrl for special characters, conflicting with my app focus hotkeys.
 * Use of spoons
 
+* Audio priority
+From [init.lua](https://github.com/dguo/dotfiles/blob/main/programs/hammerspoon/init.lua)
+
+
+* The system-wide F10 hotkey for Teams Mute has an issue where it sends the hotkey to first Teams window it finds. If that's a Chat window and not the Meeting window, the hotkey will be ignored.
+
+* The focus cycle-through only works between the 2 most recent windows (probably because the stack gets reordered)
+
+## Related
+
+[TIL/0000-MacOS.md at main · eddy-geek/TIL](https://github.com/eddy-geek/TIL/blob/main/0000-MacOS.md)
+
+[List of Mac/Apple keyboard symbols](https://gist.github.com/jlyonsmith/6992156f18c423fd1c5af068aa311fb5)

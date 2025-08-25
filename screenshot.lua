@@ -1,4 +1,4 @@
--- not yet used
+-- STATUS: NOT USED YET
 
 -- pending implementation of approach:
 -- * use clipboard by default (both ^+Esc and Cmd+Shift+5)
