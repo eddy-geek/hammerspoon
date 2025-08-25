@@ -49,6 +49,9 @@ end
 -- all enabled hotkeys go here; every key is a keyboard combination (string), associated value is a stack (list) of lightweight
 -- hotkey objects, created in new(); the currently enabled hotkey sits at the top of the stack
 local hotkeys = {}
+-- Remember the top-enabled hotkey per key combo when temporarily disabling,
+-- so we can restore it with enableAll(mods, key)
+local _disabledTopByIdx = {}
 
 --- hs.hotkey.alertDuration
 --- Variable
@@ -318,9 +321,19 @@ end
 ---
 --- Returns:
 ---  * None
+--- 
+--- Note: Forked from upstream !
 function hotkey.disableAll(mods,key)
     local idx=getIndex(mods,getKeycode(key))
-    for _,hk in ipairs(hotkeys[idx] or {}) do hk:disable() end
+    local stack = hotkeys[idx] or {}
+    -- find current top-enabled hotkey (from top of stack)
+    local top
+    for i=#stack,1,-1 do
+        if stack[i].enabled then top = stack[i]; break end
+    end
+    _disabledTopByIdx[idx] = top
+    -- now disable all in this combo stack
+    for _,hk in ipairs(stack) do hk:disable() end
 end
 
 --- hs.hotkey.deleteAll(mods, key)
@@ -343,6 +356,30 @@ function hotkey.deleteAll(mods,key)
     local t=hotkeys[idx] or {}
     for i=#t,1,-1 do t[i]:delete() end
     hotkeys[idx]=nil
+end
+
+--- hs.hotkey.enableAll(mods, key)
+--- Function
+--- Re-enables the previously top-enabled hotkey for the given keyboard combination,
+--- corresponding to a prior call to hs.hotkey.disableAll(mods, key).
+--- If no prior state was recorded, this is a no-op.
+---
+--- Parameters:
+---  * mods - modifiers table/string, same as in disableAll
+---  * key  - key string/number, same as in disableAll
+---
+--- Returns:
+---  * None
+--- 
+--- Note: New not in upstream !
+function hotkey.enableAll(mods, key)
+    local idx = getIndex(mods, getKeycode(key))
+    local hk = _disabledTopByIdx[idx]
+    if hk then
+        -- Re-enable only the previously top-enabled hotkey to restore prior behavior
+        hk:enable()
+        _disabledTopByIdx[idx] = nil
+    end
 end
 
 --- hs.hotkey.getHotkeys() -> table

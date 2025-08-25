@@ -98,7 +98,7 @@ end
 hs.hotkey.deleteAll({"ctrl"}, "e")
 hs.hotkey.bind({"ctrl"}, "e", keyInfo("Finder"), function() cycleAppWindows("Finder", true) end)
 hs.hotkey.deleteAll({"ctrl"}, "z")
-hs.hotkey.bind({"ctrl"}, "z", keyInfo("Terminal"), function() cycleAppWindows("Terminal", true) end)
+hs.hotkey.bind({"ctrl"}, "z", keyInfo("Terminal"), function() cycleAppWindows("Ghostty", true) end)
 hs.hotkey.deleteAll({"ctrl"}, "s")
 hs.hotkey.bind({"ctrl"}, "s", keyInfo("System Settings"), function() cycleAppWindows("System Settings", true) end)
 

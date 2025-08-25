@@ -3,9 +3,23 @@
 -- and swap ⌘+←/→ (Command+Left/Right) with ⌥+←/→ (Option+Left/Right)
 -- inspired by https://github.com/zhou13/hammerspoon-windows-mode/blob/master/init.lua
 
+fileInfo()
+
 local eventtap = hs.eventtap
 local eventTypes = eventtap.event.types
 local keycodes = hs.keycodes.map
+
+-- Per-app: treat ⌘ as ⌃ in Terminal/iTerm for letters (so MOD1 works as Ctrl)
+local TERMINAL_BUNDLES = {
+  ["com.apple.Terminal"] = true,
+  ["com.googlecode.iterm2"] = true,
+  ["com.iterm2"] = true,
+  ["com.mitchellh.ghostty"] = true,
+}
+
+-- In Terminal, keep native ⌘ behavior for these letters (lowercase)
+-- User's keep list: C F H J M O Q T V W
+local TERMINAL_CMD_KEEP = { c = true, f = true, h = true, j = true, m = true, o = true, q = true, t = true, v = true, w = true }
 
 -- A single remapping function to handle all our custom keyboard logic.
 local function keyRemapper(event)
@@ -14,9 +28,31 @@ local function keyRemapper(event)
 
   -- This is a guard clause: if no modifiers are held, do nothing.
   -- This prevents the script from analyzing every single key press.
-  -- if flags:isPure() then
-  --   return false
-  -- end
+  if not flags.cmd and not flags.alt and not flags.ctrl and not flags.fn then
+    return false
+  end
+  
+  -- Terminal/iTerm: map Cmd+[a-z] to Ctrl+[a-z] (except keep list) so MOD1 acts as Ctrl in Terminal.
+  -- Preserve Shift/Alt; emit synthetic keystroke and temporarily disable hs.hotkey
+  -- to prevent your Ctrl-based global focus bindings from firing.
+  do
+    local front = hs.application.frontmostApplication()
+    local bid = front and front:bundleID() or nil
+    if bid and TERMINAL_BUNDLES[bid] and flags.cmd then
+      local ch = event:getCharacters(true) -- lowercase letter without modifiers
+      if ch and ch:match("^[a-z]$") and not TERMINAL_CMD_KEEP[ch] then
+        print ("Force Send ctrl + " .. ch .. " in Terminal")
+        local mods = { "ctrl" }
+        if flags.shift then table.insert(mods, "shift") end
+        if flags.alt then table.insert(mods, "alt") end
+        -- Consume original and send synthetic Ctrl+[letter]
+        hs.hotkey.disableAll(mods, ch)
+        hs.eventtap.keyStroke(mods, ch, 0)
+        hs.timer.doAfter(0.02, function() hs.hotkey.enableAll(mods, ch) end)
+        return true  -- Consume the event
+      end
+    end
+  end
 
   -- remaps: ⌘Cmd+↹Tab → ^Ctrl+↹Tab and ⌘+⇧+↹ → ^+⇧+↹
   -- Only intercept if ^Command is held and ↹Tab is pressed
