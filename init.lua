@@ -46,8 +46,9 @@ require('Functions.ReloadWatcher')
 ---------------------
 --    MUESCHUA     --
 ---------------------
-require('Functions.ChromeNewWindow')
+-- require('Functions.ChromeNewWindow')  -- buggy in Lapce, infinite loop
 require('Functions.CheatSheet')         -- h+x, h+a
+-- require('Functions.ContextMenu')        -- h+s, shift+F10, broken on multi-display
 require('Functions.FuzzyWindowSearch')  -- h+e
 require('Functions.AudioSwitcher')      -- h-7
 require('Functions.Caffeine')           -- h-c
