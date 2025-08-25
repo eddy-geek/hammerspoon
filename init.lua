@@ -15,6 +15,17 @@ hs.hotkey.bind({"ctrl"}, "r", function()
     hs.alert.show("Hammerspoon config reloaded!")
 end)
 
+-- Global bindings
+hs.loadSpoon("HotKeySheet")
+spoon.HotKeySheet:bindHotkeys({
+    toggle = { { "ctrl"}, "/" }
+  })
+-- Current app bindings
+hs.loadSpoon("KSheet")
+spoon.KSheet:bindHotkeys({
+    toggle = { { "ctrl", "shift" }, "/" }
+  })
+
 -- Show a confirmation that the config has been loaded
 hs.alert.show("Hammerspoon config reloaded")
 

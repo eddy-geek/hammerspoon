@@ -78,6 +78,15 @@ This configuration also includes the following key remappings to provide a more 
 - `Cmd + Left/Right Arrow` behavior is swapped with `Option + Left/Right Arrow` for text navigation.
 - `Cmd + Delete` behavior is swapped with `Option + Delete`.
 
+## Bugs
+
+* The focus cycle-through only works between the 2 most recent windows (probably because the stack gets reordered) -> fix it with the AppWindowSwitcher.spoon ? (committed but not used yet...)
+
+* The system-wide F10 hotkey for Teams Mute has an issue where it sends the hotkey to first Teams window it finds. If that's a Chat window and not the Meeting window, the hotkey will be ignored.
+
+* The F11 key remap does not work for some reason. Use the `hidutil` aproach ?
+
+
 ## Future Improvements
 
 > Hammerspoon can use hs.eventtap to swap only when frontmost app is not in an exclusion list. This is less robust than Karabiner for low-level modifier timing: there are edge cases with chord timing and held modifiers while Karabiner handles this more reliably.
@@ -89,10 +98,21 @@ This configuration also includes the following key remappings to provide a more 
 From [init.lua](https://github.com/dguo/dotfiles/blob/main/programs/hammerspoon/init.lua)
 
 
-* The system-wide F10 hotkey for Teams Mute has an issue where it sends the hotkey to first Teams window it finds. If that's a Chat window and not the Meeting window, the hotkey will be ignored.
+## Awesome scripts for inspiration
 
-* The focus cycle-through only works between the 2 most recent windows (probably because the stack gets reordered)
+* [muescha/dot_hammerspoon: Hammerspoon scripts](https://github.com/muescha/dot_hammerspoon)
+  * Functions
+    * MenuBarChooser - Select an icon in the macOS menu bar. Also find hidden icons.
+    * ChromeTabCopyLink - With this it is fast to copy the current title and link as markdown text.
+    * ChromeTabToNewWindow
+  * Spoons
+    * HotKeySheet.spoon - replacement for hs.hotkey.showHotkeys
+  * Helpers
+    * ErrorCatcher 
+    * **BindHotkey only to some apps** - If you like to have hotkeys only in some apps or exclude some apps from your global hotkeys, then the helper bindHotkey help you.
 
+
+ 
 ## Related
 
 [TIL/0000-MacOS.md at main · eddy-geek/TIL](https://github.com/eddy-geek/TIL/blob/main/0000-MacOS.md)
