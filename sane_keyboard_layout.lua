@@ -68,6 +68,8 @@ end)
 --     local device = hs.audiodevice.defaultOutputDevice()
 --     device:setMuted(not device:muted())
 -- end)
+
+-- BUG: F11 gives LuaSkin: hs.hotkey:enable() keycode: 103, mods: 0x0000, RegisterEventHotKey failed: -9878
 hs.hotkey.deleteAll({""}, "F11")
 hs.hotkey.bind({}, "F11", function()
     local device = hs.audiodevice.defaultOutputDevice()

@@ -3,7 +3,7 @@
 fileInfo()
 
 hs.console.darkMode(false)
-hs.console.consoleFont({ name = "Fira Code", size = 18 })
+hs.console.consoleFont({ name = "Fira Code", size = 12 })
 -- Alpha == transparency. 0 = fully transparent, 1 = fully opaque
 hs.console.alpha(0.9)
 

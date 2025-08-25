@@ -6,30 +6,23 @@
 
 fileInfo()
 
+-- Global bindings
 KSheet = hs.loadSpoon('KSheet');
 
---hs.hotkey.bind(
---        hyper,
---        "C",
---        keyInfo("KSheet"),
---        function()
---            KSheet:toggle();
---        end
---);
-
 hotkeybindmodal(
-        hyper,
-        "x",
+        { "ctrl"},
+        "/",
         keyInfo("Application Hotkeys"),
         function()  KSheet:show() end,
         function() KSheet:hide() end
 );
 
+-- Per-app bindings
 HKSheet = hs.loadSpoon('HotKeySheet');
 
 hotkeybindmodal(
-        hyper,
-        "a",
+        { "ctrl", "shift"},
+        "/",
         keyInfo("Hammerspoon Hotkeys (CheatSheet)"),
         function() HKSheet:show() end,
         function() HKSheet:hide() end

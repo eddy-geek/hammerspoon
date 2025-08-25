@@ -18,6 +18,15 @@ I am trying to stick
 
 ## Dependencies
 
+### Apps
+
+*ConfigConsole.lua* sets the font to Fira Code, so:
+
+```sh
+brew install font-fira-code
+```
+
+### Settings
 To make the experience closer to Linux, I am remapping the keys in the main MacOS hardware keyboard (in *Settings > Keyboard > Keyboard Shortcuts > Modifier keys*) as follows:
 
 ```

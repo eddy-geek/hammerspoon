@@ -49,8 +49,9 @@ require('Functions.ReloadWatcher')
 require('Functions.ChromeNewWindow')
 require('Functions.CheatSheet')         -- h+x, h+a
 require('Functions.FuzzyWindowSearch')  -- h+e
-require('Functions.AudioSwitcher')      -- h-6
+require('Functions.AudioSwitcher')      -- h-7
 require('Functions.Caffeine')           -- h-c
+-- require('Functions.MemoryAppBar') -- show current used memory
 
 ---------------------
 --    MY STUFF     --
@@ -72,17 +73,6 @@ hs.hotkey.bind({"ctrl"}, "r", function()
     hs.reload()
     hs.alert.show("Hammerspoon config reloaded!")
 end)
-
--- Global bindings
-hs.loadSpoon("HotKeySheet")
-spoon.HotKeySheet:bindHotkeys({
-    toggle = { { "ctrl"}, "/" }
-  })
--- Current app bindings
-hs.loadSpoon("KSheet")
-spoon.KSheet:bindHotkeys({
-    toggle = { { "ctrl", "shift" }, "/" }
-  })
 
 -- Show a confirmation that the config has been loaded
 hs.alert.show("Hammerspoon config reloaded")

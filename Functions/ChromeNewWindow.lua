@@ -9,7 +9,7 @@ fileInfo()
 
 bindHotkey(to("Google Chrome"), { "cmd"}, "n", keyInfo("New Window (only in Chrome)"), function()
 
-    local menuItemName = "Neues Fenster"
+    local menuItemName = "New window"
 
     local currentFrame = hs.window.focusedWindow():frame()
     local app = hs.application.frontmostApplication()
