@@ -58,7 +58,7 @@ keyWatcher:start()
 -- =============================================================================
 -- Remap F5 to Command + R (page refresh) only if no modifiers are pressed
 hs.hotkey.deleteAll({""}, "F5")
-hs.hotkey.bind({}, "F5", function()
+hs.hotkey.bind({}, "F5", keyInfo("Refresh page (⌘+R)"), function()
     hs.eventtap.keyStroke({"cmd"}, "R")
 end)
 
@@ -71,13 +71,13 @@ end)
 
 -- BUG: F11 gives LuaSkin: hs.hotkey:enable() keycode: 103, mods: 0x0000, RegisterEventHotKey failed: -9878
 hs.hotkey.deleteAll({""}, "F11")
-hs.hotkey.bind({}, "F11", function()
+hs.hotkey.bind({}, "F11", keyInfo("Volume Down (broken!)"), function()
     local device = hs.audiodevice.defaultOutputDevice()
     local current = device:volume()
     device:setVolume(math.max(0, current - 5))
 end)
 hs.hotkey.deleteAll({""}, "F12")
-hs.hotkey.bind({}, "F12", function()
+hs.hotkey.bind({}, "F12", keyInfo("Volume Up"), function()
     local device = hs.audiodevice.defaultOutputDevice()
     local current = device:volume()
     device:setVolume(math.min(100, current + 5))

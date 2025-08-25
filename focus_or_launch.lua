@@ -96,56 +96,56 @@ end
 
 -- System
 hs.hotkey.deleteAll({"ctrl"}, "e")
-hs.hotkey.bind({"ctrl"}, "e", function() cycleAppWindows("Finder", true) end)
+hs.hotkey.bind({"ctrl"}, "e", keyInfo("Finder"), function() cycleAppWindows("Finder", true) end)
 hs.hotkey.deleteAll({"ctrl"}, "z")
-hs.hotkey.bind({"ctrl"}, "z", function() cycleAppWindows("Terminal", true) end)
+hs.hotkey.bind({"ctrl"}, "z", keyInfo("Terminal"), function() cycleAppWindows("Terminal", true) end)
 hs.hotkey.deleteAll({"ctrl"}, "s")
-hs.hotkey.bind({"ctrl"}, "s", function() cycleAppWindows("System Settings", true) end)
+hs.hotkey.bind({"ctrl"}, "s", keyInfo("System Settings"), function() cycleAppWindows("System Settings", true) end)
 
 -- Browsers
 hs.hotkey.deleteAll({"ctrl"}, "f")
-hs.hotkey.bind({"ctrl"}, "f", function() cycleAppWindows("Firefox", true) end)
+hs.hotkey.bind({"ctrl"}, "f", keyInfo("Firefox"), function() cycleAppWindows("Firefox", true) end)
 hs.hotkey.deleteAll({"ctrl"}, "g")
-hs.hotkey.bind({"ctrl"}, "g", function() cycleAppWindows("Google Chrome", true) end)
+hs.hotkey.bind({"ctrl"}, "g", keyInfo("Google Chrome"), function() cycleAppWindows("Google Chrome", true) end)
 hs.hotkey.deleteAll({"ctrl"}, "h")
-hs.hotkey.bind({"ctrl"}, "h", function() cycleAppWindows("Safari", true) end)
+hs.hotkey.bind({"ctrl"}, "h", keyInfo("Safari"), function() cycleAppWindows("Safari", true) end)
 
 -- Editors (Text, Code, Notes)
 hs.hotkey.deleteAll({"ctrl"}, "a")
-hs.hotkey.bind({"ctrl"}, "a", function() cycleAppWindows("Anytype", true) end)
+hs.hotkey.bind({"ctrl"}, "a", keyInfo("Anytype"), function() cycleAppWindows("Anytype", true) end)
 -- hs.hotkey.deleteAll({"ctrl"}, "n")
 -- hs.hotkey.bind({"ctrl"}, "n", function() cycleAppWindows("MacVim", true) end)
 hs.hotkey.deleteAll({"ctrl"}, "n")  -- Notepad
-hs.hotkey.bind({"ctrl"}, "n", function() cycleAppWindows("Lapce", true) end)
+hs.hotkey.bind({"ctrl"}, "n", keyInfo("Lapce"), function() cycleAppWindows("Lapce", true) end)
 hs.hotkey.deleteAll({"ctrl"}, "v")
-hs.hotkey.bind({"ctrl"}, "v", function() cycleAppWindows("Visual Studio Code", true) end)
+hs.hotkey.bind({"ctrl"}, "v", keyInfo("Visual Studio Code"), function() cycleAppWindows("Visual Studio Code", true) end)
 hs.hotkey.deleteAll({"ctrl"}, "x")
-hs.hotkey.bind({"ctrl"}, "x", function() cycleAppWindows("Windsurf", true) end)
+hs.hotkey.bind({"ctrl"}, "x", keyInfo("Windsurf"), function() cycleAppWindows("Windsurf", true) end)
 
 -- Microsoft
 hs.hotkey.deleteAll({"ctrl"}, "t")
-hs.hotkey.bind({"ctrl"}, "t", function() cycleAppWindows("Microsoft Teams", true) end)
+hs.hotkey.bind({"ctrl"}, "t", keyInfo("Microsoft Teams"), function() cycleAppWindows("Microsoft Teams", true) end)
 hs.hotkey.deleteAll({"ctrl"}, "w")
-hs.hotkey.bind({"ctrl"}, "w", function() cycleAppWindows("Microsoft Word", true) end)
+hs.hotkey.bind({"ctrl"}, "w", keyInfo("Microsoft Word"), function() cycleAppWindows("Microsoft Word", true) end)
 hs.hotkey.deleteAll({"ctrl"}, "p")
-hs.hotkey.bind({"ctrl"}, "p", function() cycleAppWindows("Microsoft Powerpoint", true) end)
+hs.hotkey.bind({"ctrl"}, "p", keyInfo("Microsoft Powerpoint"), function() cycleAppWindows("Microsoft Powerpoint", true) end)
 
 hs.hotkey.deleteAll({"ctrl"}, "q")
-hs.hotkey.bind({"ctrl"}, "q", function() cycleAppWindows("Microsoft 365 Copilot", true) end)
+hs.hotkey.bind({"ctrl"}, "q", keyInfo("Microsoft 365 Copilot"), function() cycleAppWindows("Microsoft 365 Copilot", true) end)
 
 -- Other
 hs.hotkey.deleteAll({"ctrl"}, "i")
-hs.hotkey.bind({"ctrl"}, "i", function() cycleAppWindows("PaintZ", true) end)
+hs.hotkey.bind({"ctrl"}, "i", keyInfo("PaintZ"), function() cycleAppWindows("PaintZ", true) end)
 
 
 hs.hotkey.deleteAll({"ctrl"}, "c")
-hs.hotkey.bind({"ctrl"}, "c", function()
+hs.hotkey.bind({"ctrl"}, "c", keyInfo("Outlook Calendar"), function()
   cycleAppWindows("Microsoft Outlook", true);
   hs.eventtap.keyStroke({"cmd"}, '2')   -- focus calendar
  end)
 
 hs.hotkey.deleteAll({"ctrl"}, "m")
-hs.hotkey.bind({"ctrl"}, "m", function()
+hs.hotkey.bind({"ctrl"}, "m", keyInfo("Outlook Mail"), function()
   cycleAppWindows("Microsoft Outlook", true);
   hs.eventtap.keyStroke({"cmd"}, '1')   -- focus mail
  end)

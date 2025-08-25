@@ -51,6 +51,7 @@ After :   ⌘     ^     ⌥    (Command      Control  Option)
 ## Hotkeys
 
 The following table lists all the configured hotkeys and their actions.
+A more up-to-date list can be found with `Ctrl+/`.
 
 | Hotkey             | Action                                                              |
 | ------------------ | ------------------------------------------------------------------- |

@@ -28,7 +28,7 @@ local function toggleTeamsMute()
 end
 
 -- Bind the F10 key to trigger our function
-hs.hotkey.bind({}, "F10", toggleTeamsMute)
+hs.hotkey.bind({}, "F10", keyInfo("Teams Mute"), toggleTeamsMute)
 
 -- Optional: Add a message to the Hammerspoon console when the script loads
 -- hs.alert.show("Teams Mute script loaded")
