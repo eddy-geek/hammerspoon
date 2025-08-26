@@ -18,6 +18,11 @@ I am trying to stick
 
 ## Dependencies
 
+Change .hammerspoon folder to be instead at .config/hammerpoon
+```sh
+defaults write org.hammerspoon.Hammerspoon MJConfigFile "${wdir}/init.lua"
+```
+
 ### Apps
 
 *ConfigConsole.lua* sets the font to Fira Code, so:
