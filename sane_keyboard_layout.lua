@@ -18,8 +18,8 @@ local TERMINAL_BUNDLES = {
 }
 
 -- In Terminal, keep native ⌘ behavior for these letters (lowercase)
--- User's keep list: C F H J M O Q T V W
-local TERMINAL_CMD_KEEP = { c = true, f = true, h = true, j = true, m = true, o = true, q = true, t = true, v = true, w = true }
+-- User's keep list: F H J M O Q T V W
+local TERMINAL_CMD_KEEP = { f = true, h = true, j = true, m = true, o = true, q = true, t = true, v = true, w = true }
 
 -- A single remapping function to handle all our custom keyboard logic.
 local function keyRemapper(event)
@@ -32,19 +32,17 @@ local function keyRemapper(event)
     return false
   end
   
-  -- Terminal/iTerm: map Cmd+[a-z] to Ctrl+[a-z] (except keep list) so MOD1 acts as Ctrl in Terminal.
+  -- Terminal/iTerm: map Cmd+[a-z] to Ctrl+[a-z] (except keep list) so Cmd acts as Ctrl in Terminal.
   -- Preserve Shift/Alt; emit synthetic keystroke and temporarily disable hs.hotkey
   -- to prevent your Ctrl-based global focus bindings from firing.
   do
     local front = hs.application.frontmostApplication()
     local bid = front and front:bundleID() or nil
-    if bid and TERMINAL_BUNDLES[bid] and flags.cmd then
+    if bid and TERMINAL_BUNDLES[bid] and flags.cmd and not flags.shift and not flags.alt then
       local ch = event:getCharacters(true) -- lowercase letter without modifiers
       if ch and ch:match("^[a-z]$") and not TERMINAL_CMD_KEEP[ch] then
         print ("Force Send ctrl + " .. ch .. " in Terminal")
         local mods = { "ctrl" }
-        if flags.shift then table.insert(mods, "shift") end
-        if flags.alt then table.insert(mods, "alt") end
         -- Consume original and send synthetic Ctrl+[letter]
         hs.hotkey.disableAll(mods, ch)
         hs.eventtap.keyStroke(mods, ch, 0)

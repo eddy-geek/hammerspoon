@@ -55,3 +55,133 @@ Ctrl: [AB DE G I KL N P RS U   YZ]
 ```
 
 All symbols remain on Cmd.
+
+
+## Ghostty full final bindings table
+
+(modifiers: 🌐  ^  ⌥  ⌘  ⇧)
+
+| Key | Active binding | Inactive binding |
+| --- | --- | --- |
+| ⌘ A | `beginning-of-line` *(zle)* | Select All *(App)* |
+| ⌘ B | `backward-char` *(zle)* | — |
+| ⌘ C | Copy selection OR interrupt <br/> `keybind = performable:ctrl+c=copy_to_clipboard` | — |
+| ⌘ D | `delete-char-or-list` *(zle)* | Split Right *(App)* |
+| ⌘ E | `end-of-line` *(zle)* | — |
+| ⌘ F | Find *(App)* | `forward-char` *(zle)* |
+| ⌘ G | `send-break` *(zle)* | Find Next *(App)* |
+| ⌘ H | Hide *(App)* | `backward-delete-char` *(zle)* |
+| ⌘ I | `expand-or-complete` *(zle)* | Terminal Inspector *(App)* |
+| ⌘ J | `accept-line` *(zle)* | Jump to Selection *(App)* |
+| ⌘ K | `kill-line` *(zle)* | Clear Scrollback *(App)* |
+| ⌘ L | `clear-screen` *(zle)* | — |
+| ⌘ M | Minimize *(MacOS)* | `accept-line` *(zle)* |
+| ⌘ N | `down-line-or-history` *(zle)* | New Window *(App)* |
+| ⌘ O | Open… *(App)* | `accept-line-and-down-history` *(zle)* |
+| ⌘ P | `up-line-or-history` *(zle)* | Print *(App)* |
+| ⌘ Q | Quit *(App)* | push-line *(zle)* |
+| ⌘ R | `history-incremental-search-backward` *(zle)* | — |
+| ⌘ S | `history-incremental-search-forward` *(zle)* | Save *(App)* |
+| ⌘ T | New Tab *(App)* | transpose-chars *(zle)* |
+| ⌘ U | `kill-whole-line` *(zle)* | — |
+| ⌘ V | Paste *(App)* | `quoted-insert` *(zle)* |
+| ⌘ W | Close Tab *(App)* | `backward-kill-word` *(zle)* |
+| ⌘ X | - | — |
+| ⌘ Y | `yank` *(zle)* | — |
+| ⌘ Z | `suspend` *(`stty susp`)* | — |
+
+### App shortcuts
+
+These are from Ghostty default shortcuts: `ghostty +list-keybinds --default`
+
+| Key | binding |
+| --- | --- |
+| ⌘ + | Increase Font Size
+| ⌘ - | Decrease Font Size
+| ⌘ 0 | Reset Font Size
+| ⌘ = | Increase Font Size
+| ⌘ , | open_config
+| ⌘ 1…9 | goto_tab:1…8, 9→last_tab
+| ⌘ [ | goto_split:previous
+| ⌘ ] | goto_split:next
+| ⌘ ↑ | jump_to_prompt:-1
+| ⌘ ↓ | jump_to_prompt:1
+| ⌘ → | text: ^E (move to end of line)
+| ⌘ ← | text: ^A (move to beginning of line)
+| ⌘ Home | scroll_to_top
+| ⌘ End | scroll_to_bottom
+| ⌘ PageUp | scroll_page_up
+| ⌘ PageDown | scroll_page_down
+| ⌘ ⏎ | toggle_fullscreen
+| ⌘ ⌫ | text: ^U (kill whole line)
+| ⌘⌥⇧ J | write_screen_file:open
+| ⌘⌥⇧ W | close_all_windows
+| ⌘⌥ I | inspector:toggle
+| ⌘⌥ W | close_tab
+| ⌘⌥ ↑ | goto_split:up
+| ⌘⌥ ↓ | goto_split:down
+| ⌘⌥ → | goto_split:right
+| ⌘⌥ ← | goto_split:left
+| ⌘^ F | toggle_fullscreen
+| ⌘^ = | equalize_splits
+| ⌘^ ↑ | resize_split:up,10
+| ⌘^ ↓ | resize_split:down,10
+| ⌘^ → | resize_split:right,10
+| ⌘^ ← | resize_split:left,10
+| ⌘⇧ D | new_split:down
+| ⌘⇧ J | write_screen_file:paste
+| ⌘⇧ V | paste_from_selection
+| ⌘⇧ W | close_window
+| ⌘⇧ , | reload_config
+| ⌘⇧ [ | previous_tab
+| ⌘⇧ ] | next_tab
+| ⌘⇧ ↑ | jump_to_prompt:-1
+| ⌘⇧ ↓ | jump_to_prompt:1
+| ⌘⇧ ⏎ | toggle_split_zoom
+| ^ Tab | next_tab
+| ^⇧ Tab | previous_tab
+| ⇧ ↑/↓/→/← | adjust_selection:arrow
+| ⇧ Home/End | adjust_selection:home/end
+| ⇧ PageUp/PageDown | adjust_selection:page_up/page_down
+| ⇧⌘ ← | Show Previous Tab
+| ⇧⌘ → | Show Next Tab
+
+Note: for letters, Control codes are case-insensitive, so Cmd→Ctrl remap is not active when shift/alt is held, `⇧⌘ <letter>` is not remapped.
+
+### Escape / Meta prefix (^[])
+
+`^[` is the literal ESC character. In zle, ESC acts as the Meta prefix for bindings like `M-b`, `M-f`, etc. With Ghostty set to “Option sends ESC”, pressing `⌥` before a key sends `^[` + `<key>`.
+
+| Key | Active binding | Inactive binding |
+| --- | --- | --- |
+| Esc (^[) | Meta prefix for next key (e.g., `^[b` → `backward-word`) | Same |
+
+### Option (Meta) bindings (zle)
+
+
+our `bindkeys`:
+
+| Key | Active binding | Inactive binding |
+| --- | --- | --- |
+| ⌥ B | backward-word *(zle M-b)* | — |
+| ⌥ F | forward-word *(zle M-f)* | — |
+| ⌥ D | kill-word *(zle M-d)* | — |
+| ⌥ W | copy-region-as-kill *(zle M-w)* | — |
+| ⌥ Y | yank-pop *(zle M-y)* | — |
+| ⌥ T | transpose-words *(zle M-t)* | — |
+| ⌥ U | up-case-word *(zle M-u)* | — |
+| ⌥ L | down-case-word *(zle M-l)* | — |
+| ⌥ C | capitalize-word *(zle M-c)* | — |
+| ⌥ . | insert-last-word *(zle M-.)* | — |
+| ⌥ G | get-line *(zle M-g)* | — |
+| ⌥ Q | push-line *(zle M-q)* | — |
+| ⌥ H | run-help *(zle M-h)* | — |
+| ⌥ _ | insert-last-word *(zle M-_)* | — |
+| ⌥ Backspace | backward-kill-word *(zle M-^?)* | — |
+
+> Note: Option+Arrow behavior is terminal-config dependent. With “Option sends ESC”, many setups bind:
+> - ⌥ ← → M-b (backward-word)
+> - ⌥ → → M-f (forward-word)
+> - ⌥ Backspace → M-^? (backward-kill-word)
+> - ⌥ Delete → M-d (kill-word)
+
