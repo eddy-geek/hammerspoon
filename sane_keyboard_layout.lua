@@ -31,7 +31,7 @@ local function keyRemapper(event)
   if not flags.cmd and not flags.alt and not flags.ctrl and not flags.fn then
     return false
   end
-  
+
   -- Terminal/iTerm: map Cmd+[a-z] to Ctrl+[a-z] (except keep list) so Cmd acts as Ctrl in Terminal.
   -- Preserve Shift/Alt; emit synthetic keystroke and temporarily disable hs.hotkey
   -- to prevent your Ctrl-based global focus bindings from firing.
@@ -88,6 +88,13 @@ end
 keyWatcher = eventtap.new({ eventTypes.keyDown }, keyRemapper)
 keyWatcher:start()
 
+-- debugging - sometimes the main keyWatcher breaks but this one still runs
+-- hs.eventtap.new(
+--     { hs.eventtap.event.types.flagsChanged },
+--     function(event)
+--         print("flagsChanged", hs.inspect(event:getFlags()))
+--     end
+-- ):start()
 
 -- =============================================================================
 -- Remap F5 to Command + R (page refresh) only if no modifiers are pressed

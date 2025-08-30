@@ -7,7 +7,7 @@
 fileInfo()
 
 --PATH = "/dotfiles/hammerspoon/.hammerspoon/"
-PATH = "/.hammerspoon/"
+PATH = "/.config/hammerspoon/"
 
 -- Auto reload config
 function reloadConfig(files)

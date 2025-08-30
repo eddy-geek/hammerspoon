@@ -576,6 +576,8 @@ end
 ---  * This method will enable all of the hotkeys defined in the modal state via `hs.hotkey.modal:bind()`,
 ---    and disable the hotkey that entered the modal state (if one was defined)
 ---  * If the modal state was created with a keyboard combination, this method will be called automatically
+---
+--- Note: Forked from upstream !
 function hotkey.modal:enter()
     log.d('Entering modal')
     if (self.k) then
@@ -601,6 +603,8 @@ end
 ---
 --- Notes:
 ---  * This method will disable all of the hotkeys defined in the modal state, and enable the hotkey for entering the modal state (if one was defined)
+---
+--- Note: Forked from upstream !
 function hotkey.modal:exit()
     for _,hk in ipairs(self.keys) do disable(hk,true) end
     if (self.k) then
@@ -633,6 +637,8 @@ end
 ---
 --- Notes:
 ---  * If `key` is nil, no global hotkey will be registered (all other parameters will be ignored)
+---
+--- Note: Forked from upstream !
 function hotkey.modal.new(mods, key, message)
     local m = setmetatable({keys = {}}, hotkey.modal)
     m._isActive = false
@@ -661,6 +667,7 @@ function hotkey.modal:delete()
     end
 end
 
+--- Note: New not in upstream !
 function hotkey.modal:isActive()
     return self._isActive
 end

@@ -19,8 +19,10 @@ I am trying to stick
 ## Dependencies
 
 Change .hammerspoon folder to be instead at .config/hammerpoon
+([source](https://github.com/Hammerspoon/hammerspoon/issues/579))
+
 ```sh
-defaults write org.hammerspoon.Hammerspoon MJConfigFile "${wdir}/init.lua"
+defaults write org.hammerspoon.Hammerspoon MJConfigFile "~/.config/hammerspoon/init.lua"
 ```
 
 ### Apps
@@ -93,9 +95,11 @@ This configuration also includes the following key remappings to provide a more 
 - `Cmd + Left/Right Arrow` behavior is swapped with `Option + Left/Right Arrow` for text navigation.
 - `Cmd + Delete` behavior is swapped with `Option + Delete`.
 
-## Bugs
+## Bugs to fix!
 
 * The focus cycle-through only works between the 2 most recent windows (probably because the stack gets reordered) -> fix it with the AppWindowSwitcher.spoon ? (committed but not used yet...)
+
+The Microsoft Outlook hotkeys Ctrl+C and Ctrl+M should each focus a dedicated window of the app instead of forcing the first matching window to navigate away.
 
 * The system-wide F10 hotkey for Teams Mute has an issue where it sends the hotkey to first Teams window it finds. If that's a Chat window and not the Meeting window, the hotkey will be ignored.
 
