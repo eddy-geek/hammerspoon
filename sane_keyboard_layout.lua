@@ -9,7 +9,7 @@ local eventtap = hs.eventtap
 local eventTypes = eventtap.event.types
 local keycodes = hs.keycodes.map
 
--- Per-app: treat ⌘ as ⌃ in Terminal/iTerm for letters (so MOD1 works as Ctrl)
+-- Per-app: treat ⌘ as ⌃ in Terminal/iTerm for letters (so Cmd works as Ctrl)
 local TERMINAL_BUNDLES = {
   ["com.apple.Terminal"] = true,
   ["com.googlecode.iterm2"] = true,
@@ -45,8 +45,9 @@ local function keyRemapper(event)
         local mods = { "ctrl" }
         -- Consume original and send synthetic Ctrl+[letter]
         hs.hotkey.disableAll(mods, ch)
-        hs.eventtap.keyStroke(mods, ch, 0)
-        hs.timer.doAfter(0.02, function() hs.hotkey.enableAll(mods, ch) end)
+        -- hs.timer.usleep(100*1000)
+        hs.eventtap.keyStroke(mods, ch, 0, front)
+        hs.timer.doAfter(0.04, function() hs.hotkey.enableAll(mods, ch) end)
         return true  -- Consume the event
       end
     end
@@ -63,6 +64,7 @@ local function keyRemapper(event)
   end
 
   -- Swap ⌘+←/→ (Command+Left/Right) with ⌥+←/→ (Option+Left/Right)
+  --   incl. also with `shift` for selection
   if keyCode == keycodes["left"] or keyCode == keycodes["right"] or keyCode == keycodes["delete"] then
     -- CASE 1: If Command is pressed (but not Option), swap it to Option.
     if flags.cmd and not flags.alt then
