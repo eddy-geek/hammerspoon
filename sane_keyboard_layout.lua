@@ -99,7 +99,8 @@ keyWatcher:start()
 -- =============================================================================
 -- Remap F5 to Command + R (page refresh) only if no modifiers are pressed
 hs.hotkey.deleteAll({""}, "F5")
-hs.hotkey.bind({}, "F5", keyInfo("Refresh page (⌘+R)"), function()
+-- hs.hotkey.bind({}, "F5", keyInfo("Refresh page (⌘+R)"), function()
+hs.hotkey.bind({}, "F5", function()
     hs.eventtap.keyStroke({"cmd"}, "R")
 end)
 
